@@ -1,3 +1,17 @@
+function defaultEnvelopeSettings() {
+	return {
+		fadeInTime1: 0.0,
+		sustainTime1: 3.0,
+		fadeOutTime1: 1.0,
+		fadeInTime2: 1.0,
+		sustainTime2: 2.0,
+		fadeOutTime2: 1.0,
+		maxDb: 0,
+		minDb: -24
+	}
+}
+
+
 class WaveSurferManager {
     static createWaveSurfer(container, channels = 1) {
         console.log('Creating WaveSurfer with channels:', channels);
@@ -548,16 +562,7 @@ class AudioMixer {
         this.mainTrack = new AudioTrack('メイン', () => this.updateMixButtonState());
         
         // エンベロープの初期値を設定
-        this.envelope = {
-            fadeInTime1: 0.1,
-            sustainTime1: 2.0,
-            fadeOutTime1: 3.0,
-            fadeInTime2: 0.5,
-            sustainTime2: 2.0,
-            fadeOutTime2: 0.5,
-            maxDb: 0,
-            minDb: -24
-        };
+        this.envelope = defaultEnvelopeSettings();
         
         this.bgmTrack = new AudioTrack('BGM', 
             () => this.updateMixButtonState(),
@@ -1363,30 +1368,12 @@ class EnvelopeEditor {
     loadSettings() {
         try {
             const savedSettings = localStorage.getItem('envelopeSettings');
-            this.settings = savedSettings ? JSON.parse(savedSettings) : {
-                fadeInTime1: 0.1,
-                sustainTime1: 2.0,
-                fadeOutTime1: 3.0,
-                fadeInTime2: 0.5,
-                sustainTime2: 2.0,
-                fadeOutTime2: 0.5,
-                maxDb: 0,
-                minDb: -24
-            };
+            this.settings = savedSettings ? JSON.parse(savedSettings) : defaultEnvelopeSettings();
             console.log('Settings loaded:', this.settings);
         } catch (error) {
             console.error('Failed to load settings:', error);
             // エラー時はデフォルト値を使用
-            this.settings = {
-                fadeInTime1: 0.1,
-                sustainTime1: 2.0,
-                fadeOutTime1: 3.0,
-                fadeInTime2: 0.5,
-                sustainTime2: 2.0,
-                fadeOutTime2: 0.5,
-                maxDb: 0,
-                minDb: -24
-            };
+            this.settings = defaultEnvelopeSettings();
         }
     }
 

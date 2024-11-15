@@ -73,7 +73,7 @@ class AudioTrack {
         // ファイル選択関連の要素を作成
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
-        fileInput.accept = 'audio/*';
+        fileInput.accept = '.mp3,.m4a,.wav,.aac,.mp4,.3gp,.wma,.ogg,.webm,audio/*';
         fileInput.style.display = 'none';
 
         // ファイル選択エリアのスタイルを強化
@@ -398,7 +398,7 @@ class AudioTrack {
             // まずデフォルトの設定で作成
             this.wavesurfer = WaveSurferManager.createWaveSurfer(container);
             
-            // オーディオデータを読み込��でチャンネル数を���得
+            // オーディオデータを読み込でチャンネル数を得
             const channels = await WaveSurferManager.loadAudioData(this.wavesurfer, audioData);
             
             // ステレオの場合は再作成
@@ -1232,7 +1232,7 @@ class TrapezoidEditor {
     }
 
     calculateGridInterval(totalTime) {
-        if (totalTime <= 1) return 0.2;      // 1秒以下なら0.2秒間隔
+        if (totalTime <= 1) return 0.2;      // 1秒以下なら0.2���間隔
         if (totalTime <= 2) return 0.5;      // 2秒以下なら0.5間隔
         if (totalTime <= 5) return 1.0;      // 5秒以下なら1秒間隔
         if (totalTime <= 10) return 2.0;     // 10秒以下なら2秒間隔
@@ -1283,7 +1283,7 @@ class EnvelopeEditor {
             minDb: this.settings.minDb
         });
 
-        // maxDb、minDbの初期値��設定
+        // maxDb、minDbの初期値設定
         this.maxDb = this.settings.maxDb;
         this.minDb = this.settings.minDb;
 
